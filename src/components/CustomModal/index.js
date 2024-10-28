@@ -9,6 +9,7 @@ export default function CustomModal({ children, visible }) {
     <Modal
       transparent
       statusBarTranslucent
+      animationType="fade"
       visible={visible}
     >
       <Overlay>

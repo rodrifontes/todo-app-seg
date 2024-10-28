@@ -2,7 +2,11 @@ import { Text } from '../Text';
 
 import CustomModal from '../CustomModal';
 
-export default function DeleteConfirmModal({ visible }) {
+import { Button } from '../Button';
+
+import { Actions } from './styles';
+
+export default function DeleteConfirmModal({ visible, onClose, onConfirm }) {
   return (
     <CustomModal
       visible={visible}
@@ -10,7 +14,18 @@ export default function DeleteConfirmModal({ visible }) {
       <Text size={18} weight="600">
         Tem certeza que deseja remover a tarefa?
       </Text>
+
       <Text opacity={0.5} style={{ marginTop: 4 }}>Essa ação não pode ser desfeita</Text>
-    </CustomModal>
+
+      <Actions>
+        <Button primary={false} onPress={onClose}>
+          Cancelar
+        </Button>
+
+        <Button onPress={onConfirm}>
+          Confirmar
+        </Button>
+      </Actions>
+    </CustomModal >
   );
 }

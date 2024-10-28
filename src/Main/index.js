@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Container } from './styles';
 
 import { Text } from '../components/Text';
@@ -10,6 +12,8 @@ import DeleteConfirmModal from '../components/DeleteConfirmModal';
 import { tasks } from '../mocks/tasks';
 
 export default function Main() {
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+
   function handleChangeStatus(task) {
     alert("Alterar Status da Tarefa");
   }
@@ -18,8 +22,13 @@ export default function Main() {
     alert("Alterar Tarefa");
   }
 
-  function handleDeleteTask(task) {
-    alert("Excluir Tarefa");
+  function handleConfirmDeleteTask(task) {
+    setIsDeleteModalVisible(true);
+  }
+
+  function handleDeleteTask() {
+    //Codigo p Excluir a tarefa
+    setIsDeleteModalVisible(false);
   }
 
   return (
@@ -30,12 +39,16 @@ export default function Main() {
         tasks={tasks}
         onChangeStatus={handleChangeStatus}
         onEditTask={handleEditTask}
-        onDeleteTask={handleDeleteTask}
+        onDeleteTask={handleConfirmDeleteTask}
       />
 
       <AddButton onPress={() => alert('Criar Tarefa')} />
 
-      <DeleteConfirmModal visible={true} />
+      <DeleteConfirmModal
+        visible={isDeleteModalVisible}
+        onClose={() => setIsDeleteModalVisible(false)}
+        onConfirm={handleDeleteTask}
+      />
 
     </Container>
   );
