@@ -1,7 +1,5 @@
 import { Modal } from 'react-native';
 
-import { Text } from '../Text';
-
 import { Overlay, ModalBody } from './styles';
 
 export default function CustomModal({ children, visible }) {
@@ -12,7 +10,7 @@ export default function CustomModal({ children, visible }) {
       animationType="fade"
       visible={visible}
     >
-      <Overlay>
+      <Overlay behavior="padding">
         <ModalBody>
           {children}
         </ModalBody>
